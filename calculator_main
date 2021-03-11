@@ -1,0 +1,111 @@
+from PyQt5 import QtWidgets, QtGui, QtCore
+from calculator import Ui_MainWindow
+
+
+class myMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super(myMainWindow, self).__init__()
+        self.setupUi(self)
+        self.label.setText("")
+        self.push_0.clicked.connect(self.method_0)
+        self.push_1.clicked.connect(self.method_1)
+        self.push_2.clicked.connect(self.method_2)
+        self.push_3.clicked.connect(self.method_3)
+        self.push_4.clicked.connect(self.method_4)
+        self.push_5.clicked.connect(self.method_5)
+        self.push_6.clicked.connect(self.method_6)
+        self.push_7.clicked.connect(self.method_7)
+        self.push_8.clicked.connect(self.method_8)
+        self.push_9.clicked.connect(self.method_9)
+        self.push_dot.clicked.connect(self.method_dot)
+        self.push_plus.clicked.connect(self.method_plus)
+        self.push_sub.clicked.connect(self.method_sub)
+        self.push_mul.clicked.connect(self.method_mul)
+        self.push_div.clicked.connect(self.method_div)
+        self.push_equl.clicked.connect(self.method_equl)
+        self.push_clear.clicked.connect(self.method_clear)
+        self.push_del.clicked.connect(self.method_del)
+
+    def method_0(self):
+        text = self.label.text()
+        self.label.setText(text + "0")
+
+    def method_1(self):
+        text = self.label.text()
+        self.label.setText(text + "1")
+
+    def method_2(self):
+        text = self.label.text()
+        self.label.setText(text + "2")
+
+    def method_3(self):
+        text = self.label.text()
+        self.label.setText(text + "3")
+
+    def method_4(self):
+        text = self.label.text()
+        self.label.setText(text + "4")
+
+    def method_5(self):
+        text = self.label.text()
+        self.label.setText(text + "5")
+
+    def method_6(self):
+        text = self.label.text()
+        self.label.setText(text + "6")
+
+    def method_7(self):
+        text = self.label.text()
+        self.label.setText(text + "7")
+
+    def method_8(self):
+        text = self.label.text()
+        self.label.setText(text + "8")
+
+    def method_9(self):
+        text = self.label.text()
+        self.label.setText(text + "9")
+
+    def method_dot(self):
+        text = self.label.text()
+        self.label.setText(text + ".")
+
+    def method_plus(self):
+        text = self.label.text()
+        self.label.setText(text + "+")
+
+    def method_sub(self):
+        text = self.label.text()
+        self.label.setText(text + "-")
+
+    def method_mul(self):
+        text = self.label.text()
+        self.label.setText(text + "*")
+
+    def method_div(self):
+        text = self.label.text()
+        self.label.setText(text + "/")
+
+    def method_clear(self):
+        self.label.setText("")
+
+    def method_del(self):
+        text = self.label.text()
+        self.label.setText(text[:len(text) - 1])
+
+    def method_equl(self):
+        text = self.label.text()
+        try:
+            ans = eval(text)
+            self.label.setText(str(ans))
+        except:
+            self.label.setText("Wrong Input")
+
+
+import sys
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    w = myMainWindow()
+    w.show()
+    sys.exit(app.exec_())
