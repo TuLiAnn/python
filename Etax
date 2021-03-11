@@ -1,0 +1,26 @@
+import requests
+
+from bs4 import BeautifulSoup
+
+response = requests.get("https://invoice.etax.nat.gov.tw/")
+soup = BeautifulSoup(response.text, "html.parser")
+
+result = soup.find_all("span",class_ = "t18Red")
+print(result)
+headers = {
+        "Authorization": "Bearer " + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+params = {"message":"特別獎:\n" + str(result[0])[21:29] +
+                    "\n特獎:\n" + str(result[1])[21:29] +
+          "\n頭獎:\n" + str(result[2])[40:48]
+          + "\n" + str(result[2])[51:59]
+          + "\n" + str(result[2])[62:70]
+          +"\n六獎:\n" + str(result[3])[41:44]
+          +"\n" + str(result[3])[47:50]}
+
+r = requests.post("https://notify-api.line.me/api/notify",
+                  headers=headers, params=params)
+
+
